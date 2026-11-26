@@ -238,6 +238,7 @@ footer { border-top-color:#30314f; }
 .about-photos{position:relative;min-height:430px}
 .about-photos img{position:absolute;object-fit:cover;border:1px solid #5b5b83;box-shadow:0 20px 65px #0008}
 .about-main{width:66%;height:350px;left:0;top:0;z-index:2;object-position:center 25%}
+.about-single{width:82%;height:420px;left:0;top:0;object-position:center 48%;border-radius:18px}
 .about-second{width:57%;height:270px;right:0;bottom:0;z-index:3;object-position:center 45%}
 .photo-stamp{position:absolute;right:4%;top:10%;z-index:4;font:700 10px/1.7 var(--display);letter-spacing:2px;color:var(--accent2);text-align:right;text-shadow:0 2px 10px #000}
 .about-heading{font:600 clamp(34px,4.5vw,50px)/1.15 var(--display);letter-spacing:-2px;margin-bottom:22px}
@@ -269,5 +270,5 @@ footer { border-top-color:#30314f; }
 .coming-orbit{width:76px;height:76px;border:1px solid #6c62a5;border-radius:50%;display:grid;place-items:center;margin-bottom:24px;box-shadow:0 0 40px #9b8cff30;animation:orbitPulse 3s ease-in-out infinite}
 .coming-orbit span{font-size:30px;color:var(--accent2)}
 @keyframes orbitPulse{50%{transform:rotate(45deg) scale(1.08);box-shadow:0 0 65px #45d9d044}}
-@media(max-width:850px){.about-layout{gap:45px}.about-photos{min-height:360px}.about-main{height:300px}.about-second{height:220px}.education-card{grid-template-columns:130px 1fr}}
-@media(max-width:650px){.about-layout{grid-template-columns:1fr;gap:30px}.about-photos{width:min(100%,420px);margin:auto;min-height:350px}.about-main{height:290px}.about-second{height:210px}.interest-grid{grid-template-columns:1fr}.interest-grid article{min-height:185px}.org-card{padding:20px;align-items:flex-start}.org-mark{font-size:22px}.education-card{grid-template-columns:1fr;gap:12px;padding:23px}.education-symbol{width:60px;height:60px;font-size:25px}.coming-soon{min-height:340px}}
+@media(max-width:850px){.about-layout{gap:45px}.about-photos{min-height:360px}.about-main{height:300px}.about-single{height:360px;width:88%}.about-second{height:220px}.education-card{grid-template-columns:130px 1fr}}
+@media(max-width:650px){.about-layout{grid-template-columns:1fr;gap:30px}.about-photos{width:min(100%,420px);margin:auto;min-height:350px}.about-main{height:290px}.about-single{height:390px;width:100%}.about-second{height:210px}.interest-grid{grid-template-columns:1fr}.interest-grid article{min-height:185px}.org-card{padding:20px;align-items:flex-start}.org-mark{font-size:22px}.education-card{grid-template-columns:1fr;gap:12px;padding:23px}.education-symbol{width:60px;height:60px;font-size:25px}.coming-soon{min-height:340px}}
