@@ -47,3 +47,33 @@ if ("IntersectionObserver" in window) {
   sections.forEach(section => observer.observe(section));
 }
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+
+// Smooth scroll reveal: elements appear gently as they enter the screen.
+const revealTargets = [
+  ".hero .eyebrow", ".hero .kicker", ".hero h1", ".hero h2",
+  ".hero .hero-text", ".hero .actions", ".hero-foot", ".photo-wrap",
+  ".section-head", ".two-col > *", ".facts > div",
+  ".intro > *", ".interest-list article", ".projects > article",
+  ".disclaimer", ".contact-foot", "footer .footer > *"
+];
+const revealElements = document.querySelectorAll(revealTargets.join(","));
+if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  revealElements.forEach((element, index) => {
+    element.classList.add("reveal");
+    if (index % 4 === 1) element.classList.add("reveal-delay-1");
+    if (index % 4 === 2) element.classList.add("reveal-delay-2");
+    if (index % 4 === 3) element.classList.add("reveal-delay-3");
+  });
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+  revealElements.forEach(element => revealObserver.observe(element));
+} else {
+  revealElements.forEach(element => element.classList.add("is-visible"));
+}
