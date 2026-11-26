@@ -77,3 +77,36 @@ if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: re
 } else {
   revealElements.forEach(element => element.classList.add("is-visible"));
 }
+
+
+// Scroll progress, subtle pointer light, and gentle desktop photo tilt.
+const progressBar = document.querySelector(".scroll-progress");
+const updateProgress = () => {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+  progressBar.style.width = `${progress}%`;
+};
+window.addEventListener("scroll", updateProgress, { passive: true });
+updateProgress();
+
+const glow = document.querySelector(".cursor-glow");
+if (glow && matchMedia("(hover:hover) and (pointer:fine)").matches) {
+  window.addEventListener("pointermove", event => {
+    glow.style.left = `${event.clientX}px`;
+    glow.style.top = `${event.clientY}px`;
+  }, { passive: true });
+}
+
+const photoWrap = document.querySelector(".photo-wrap");
+if (photoWrap && matchMedia("(hover:hover) and (pointer:fine)").matches &&
+    !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  photoWrap.addEventListener("pointermove", event => {
+    const rect = photoWrap.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    photoWrap.style.transform = `perspective(900px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+  });
+  photoWrap.addEventListener("pointerleave", () => {
+    photoWrap.style.transform = "perspective(900px) rotateY(0) rotateX(0)";
+  });
+}
