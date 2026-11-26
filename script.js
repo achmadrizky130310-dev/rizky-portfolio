@@ -2,7 +2,6 @@
 const PROFILE = {
   email: "achmadrizky130310@gmail.com",
   instagram: "https://www.instagram.com/xevlky/",
-  tiktok: "https://tiktok.com/",
   whatsapp: "https://wa.me/62895322190866"
 };
 
@@ -22,10 +21,9 @@ const email = document.querySelector("#emailLink");
 email.href = `mailto:${PROFILE.email}`;
 email.textContent = `${PROFILE.email} ↗`;
 document.querySelector("#instagramLink").href = PROFILE.instagram;
-document.querySelector("#tiktokLink").href = PROFILE.tiktok;
 document.querySelector("#whatsappLink").href = PROFILE.whatsapp;
 
-const phrases = ["Creative Explorer", "Digital Learner", "Curious Thinker"];
+const phrases = ["Business Learner", "Future Entrepreneur", "Always Learning"];
 let phrase = 0;
 const rotating = document.querySelector("#rotatingText");
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -54,7 +52,7 @@ const revealTargets = [
   ".hero .eyebrow", ".hero .kicker", ".hero h1", ".hero h2",
   ".hero .hero-text", ".hero .actions", ".hero-foot", ".photo-wrap",
   ".section-head", ".two-col > *", ".facts > div",
-  ".intro > *", ".interest-list article", ".projects > article",
+  ".intro > *", ".interest-grid article", ".skill-tags span", ".coming-soon > *", ".education-card > *", ".org-card > *",
   ".disclaimer", ".contact-foot", "footer .footer > *"
 ];
 const revealElements = document.querySelectorAll(revealTargets.join(","));
