@@ -1,9 +1,9 @@
 // GANTI DATA DI BAWAH INI DENGAN KONTAK ASLI KAMU.
 const PROFILE = {
-  email: "hello@example.com",
-  instagram: "https://instagram.com/",
+  email: "achmadrizky130310@gmail.com",
+  instagram: "https://www.instagram.com/xevlky/",
   tiktok: "https://tiktok.com/",
-  whatsapp: "https://wa.me/"
+  whatsapp: "https://wa.me/62895322190866"
 };
 
 const menuButton = document.querySelector("#menuButton");
