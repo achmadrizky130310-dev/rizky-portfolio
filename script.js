@@ -110,3 +110,68 @@ if (photoWrap && matchMedia("(hover:hover) and (pointer:fine)").matches &&
     photoWrap.style.transform = "perspective(900px) rotateY(0) rotateX(0)";
   });
 }
+
+
+// V2 motion layer: animated particle field, pointer spotlight and card tilt.
+(() => {
+  const canvas = document.getElementById("particleCanvas");
+  const ctx = canvas && canvas.getContext("2d");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!canvas || !ctx || reduce) return;
+  const mobile = window.matchMedia("(max-width: 650px)").matches;
+  let w = 0, h = 0, points = [], raf = 0;
+  const count = mobile ? 27 : 58;
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = Math.floor(w*dpr); canvas.height = Math.floor(h*dpr);
+    canvas.style.width = w+"px"; canvas.style.height = h+"px";
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    points = Array.from({length:count}, () => ({
+      x:Math.random()*w, y:Math.random()*h,
+      vx:(Math.random()-.5)*.34, vy:(Math.random()-.5)*.34,
+      r:Math.random()*1.7+.5, a:Math.random()*.42+.12
+    }));
+  };
+  const draw = () => {
+    ctx.clearRect(0,0,w,h);
+    for (let i=0;i<points.length;i++) {
+      const p=points[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(235,235,230,${p.a})`;ctx.fill();
+      for(let j=i+1;j<points.length;j++){
+        const q=points[j], dx=p.x-q.x,dy=p.y-q.y,dist=Math.hypot(dx,dy);
+        if(dist<mobile?72:112) {
+          const limit=mobile?72:112;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+          ctx.strokeStyle=`rgba(210,210,205,${(1-dist/limit)*.12})`;ctx.lineWidth=.65;ctx.stroke();
+        }
+      }
+    }
+    raf=requestAnimationFrame(draw);
+  };
+  resize(); draw();
+  window.addEventListener("resize",resize,{passive:true});
+  document.addEventListener("visibilitychange",()=> {
+    if(document.hidden) cancelAnimationFrame(raf);
+    else if(!reduce) draw();
+  });
+})();
+
+const spotlight = document.querySelector(".spotlight");
+if (spotlight && matchMedia("(hover:hover) and (pointer:fine)").matches) {
+  window.addEventListener("pointermove", e => {
+    spotlight.style.left = e.clientX+"px";
+    spotlight.style.top = e.clientY+"px";
+  }, {passive:true});
+}
+document.querySelectorAll(".project-art").forEach(card => {
+  if (!matchMedia("(hover:hover) and (pointer:fine)").matches ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  card.addEventListener("pointermove", e => {
+    const r=card.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(800px) rotateX(${-y*5}deg) rotateY(${x*5}deg) translateY(-5px)`;
+  });
+  card.addEventListener("pointerleave",()=>card.style.transform="perspective(800px) rotateX(0) rotateY(0)");
+});
