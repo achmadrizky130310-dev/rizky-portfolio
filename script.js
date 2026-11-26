@@ -139,13 +139,13 @@ if (photoWrap && matchMedia("(hover:hover) and (pointer:fine)").matches &&
       const p=points[i]; p.x+=p.vx; p.y+=p.vy;
       if(p.x<0||p.x>w)p.vx*=-1; if(p.y<0||p.y>h)p.vy*=-1;
       ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(235,235,230,${p.a})`;ctx.fill();
+      ctx.fillStyle=`rgba(169,151,255,${p.a})`;ctx.fill();
       for(let j=i+1;j<points.length;j++){
         const q=points[j], dx=p.x-q.x,dy=p.y-q.y,dist=Math.hypot(dx,dy);
         if(dist<mobile?72:112) {
           const limit=mobile?72:112;
           ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
-          ctx.strokeStyle=`rgba(210,210,205,${(1-dist/limit)*.12})`;ctx.lineWidth=.65;ctx.stroke();
+          ctx.strokeStyle=`rgba(91,218,218,${(1-dist/limit)*.18})`;ctx.lineWidth=.65;ctx.stroke();
         }
       }
     }

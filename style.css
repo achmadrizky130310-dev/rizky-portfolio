@@ -159,3 +159,71 @@ header { z-index:20; }
   #particleCanvas,.spotlight { display:none; }
   .hero:before,.hero:after,.photo-frame,.photo-frame:after,.float-chip,.hero h1 { animation:none!important; }
 }
+
+
+/* COLOR MOTION V3 — midnight indigo, violet and electric teal */
+:root {
+  --bg:#080914;
+  --text:#f4f3ff;
+  --muted:#9a9bb5;
+  --line:#282a43;
+  --accent:#9b8cff;
+  --accent2:#45d9d0;
+}
+body {
+  background:
+    radial-gradient(ellipse at 12% 12%, #30205b55 0%, transparent 34%),
+    radial-gradient(ellipse at 88% 38%, #103f5550 0%, transparent 32%),
+    radial-gradient(ellipse at 50% 92%, #27134444 0%, transparent 38%),
+    #080914;
+}
+body:before {
+  content:"";position:fixed;inset:-35%;z-index:0;pointer-events:none;opacity:.44;
+  background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,#5637a322 55deg,transparent 115deg,#147e8a22 190deg,transparent 255deg,#673c9c22 320deg,transparent 360deg);
+  filter:blur(70px);animation:auroraDrift 32s linear infinite;
+}
+@keyframes auroraDrift { to { transform:rotate(360deg) scale(1.08); } }
+header { background:#090a18df;border-bottom-color:#8c7bff2c; }
+.logo span,h1 span { color:var(--accent);background:linear-gradient(100deg,#a99aff,#65e4df 65%,#a99aff);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:accentFlow 6s linear infinite; }
+@keyframes accentFlow { to { background-position:200% center; } }
+.links a:hover,.links a.active { color:#b7acff; }
+.nav-cta { border-color:#7668c966;color:#c8c1ff; }
+.nav-cta:hover { background:linear-gradient(100deg,#8976ff,#39cfc8);color:#080914; }
+.eyebrow b { background:#5ee5dc;box-shadow:0 0 15px #5ee5dcaa; }
+.eyebrow i,.section-head i,.scroll i { background:linear-gradient(90deg,#9b8cff,#45d9d0); }
+.kicker { color:#a9a0ff; }
+.hero h2 em { color:#9b8cff; }
+.hero h2 span { color:#75ddd8; }
+.hero-text,.copy p,.intro p,.contact-desc { color:#a4a5bd; }
+.light { background:linear-gradient(110deg,#a89aff,#55ddd5);color:#090a18;box-shadow:0 8px 30px #7668ff33; }
+.quiet { color:#c2baff; }
+.photo-frame { border-color:#7668c977;background:radial-gradient(#30295a,#101322 70%);box-shadow:0 0 0 1px #53d9d422,0 20px 70px #080914aa,0 0 55px #7668ff25; }
+.photo-wrap:before { border-color:#9c8dff66; }
+.photo-caption { background:linear-gradient(transparent,#080914eF); }
+.alt { background:linear-gradient(120deg,#101126,#0c1020 55%,#101020); }
+.section-head span { color:#e3e2ff; }
+.section-head i { background:linear-gradient(90deg,#9b8cff55,#45d9d055); }
+.two-col h2 em,.intro h2 em,.project-art strong em { color:#9b8cff; }
+.label,.section-head small { color:#70dcd5; }
+.facts,.interest-list,.interest-list article { border-color:#30314f; }
+.facts b { color:#e1ddff; }
+.interest-list article:hover { background:linear-gradient(90deg,#7668ff18,#45d9d008,transparent); }
+.interest-list article>b { color:#8f83ff; }
+.art-one { background:radial-gradient(ellipse at 70% 35%,#5b3c91,#202449 48%,#0b0d1b 82%); }
+.art-one:after { border-color:#a99aff;box-shadow:0 0 28px #8d78ff55,0 0 0 22px #8d78ff14,0 0 0 48px #45d9d00a; }
+.art-two { background:radial-gradient(ellipse at 50% 50%,#164b5c,#151936 60%,#090a17); }
+.window { border-color:#64d9d2;background:#0b1021e8;box-shadow:0 0 30px #45d9d022; }
+.window b { background:linear-gradient(145deg,#44356f,#174b56);border-color:#7064a8; }
+.project-art { border-color:#48436c; }
+.project-art:hover { box-shadow:0 24px 55px #000b,0 0 0 1px #9b8cff66,0 0 35px #7668ff22; }
+.project-meta { color:#c5c3e0; }
+.contact { background:radial-gradient(ellipse at 80% 20%,#26305a55,transparent 42%); }
+.contact .socials a:hover { color:#69ded8;border-color:#69ded8; }
+footer { border-top-color:#30314f; }
+.float-chip { border-color:#8e80ff66;background:#111329df;color:#d8d2ff;box-shadow:0 10px 35px #0009,0 0 24px #7668ff22; }
+.chip-top { border-left:2px solid #a18fff; }
+.chip-bottom { border-right:2px solid #45d9d0; }
+.spotlight { background:radial-gradient(circle,#9a83ff1c 0%,#45d9d00c 34%,transparent 70%); }
+.bg-grid { opacity:.10;background-image:linear-gradient(#a99aff 1px,transparent 1px),linear-gradient(90deg,#45d9d0 1px,transparent 1px); }
+.hero:before { border-color:#9b8cff20;box-shadow:0 0 0 40px #45d9d008,0 0 0 90px #9b8cff07; }
+@media(prefers-reduced-motion:reduce) { body:before,.logo span,h1 span { animation:none!important; } }
